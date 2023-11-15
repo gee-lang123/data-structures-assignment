@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <string.h>
+   // Input student information and grades for 5 students
+    printf("Enter the name of student 1: ");
+    scanf("%s", students[0].name);
+    printf("Enter the registration number of student 1: ");
+    scanf("%s", students[0].reg_no);
+
+    printf("Enter grades for 5 units for student 1:\n");
+    printf("Enter grade for Networking: ");
+    scanf("%f", &students[0].grades[0]);
+    printf("Enter grade for C Programming: ");
+    scanf("%f", &students[0].grades[1]);
+    printf("Enter grade for Data Structures and Algorithm: ");
+    scanf("%f", &students[0].grades[2]);
+    printf("Enter grade for Economics: ");
+    scanf("%f", &students[0].grades[3]);
+    printf("Enter grade for Marketing: ");
+    scanf("%f", &students[0].grades[4]);
+
+struct Student {
+    char name[20];
+    char reg_no[10];
+    float grades[5];
+};
+
+int main() {
+    struct Student students[5];
+    char unitNames[5][50] = {
+        "Networking",
+        "C Programming",
+        "Data Structures and Algorithm",
+        "Economics",
+        "Marketing"
+    };
+
+    // Input student information and grades
+    for (int i = 0; i < 5; i++) {
+        printf("Enter the name of student %d: ", i + 1);
+        scanf("%s", students[i].name);
+        printf("Enter the registration number of student %d: ", i + 1);
+        scanf("%s", students[i].reg_no);
+
+        printf("Enter grades for 5 units for student %d:\n", i + 1);
+        for (int j = 0; j < 5; j++) {
+           
+            scanf("%f", &students[i].grades[j]);
+        }
+    }
+
+    // Calculate and display the average grade for each student
+    for (int i = 0; i < 5; i++) {
+        float total or (int j = 0; j < 5; j++) {
+            total += students[i].grades[j];
+        }
+        float average = total / 5;
+        printf("%s's average grade: %.2f\n", students[i].name, average);
+    }
+
+    // Find and display the highest and lowest grades
+    float highest = students[0].grades[0];
+    float lowest = students[0].grades[0];
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (students[i].grades[j] > highest) {
+                highest = students[i].grades[j];
+            }
+            if (students[i].grades[j] < lowest) {
+                lowest = students[i].grades[j];
+            }
+        }
+    }
+    printf("Highest grade: %.2f\n", highest);
+    printf("Lowest grade: %.2f\n", lowest);
+
+    // Allow the user to search for a specific student's grade by entering the registration number
+    char search_reg_no[20];
+    printf("Enter a registration number to search for a student's grade: ");
+    scanf("%s", search_reg_no);
+
+    for (int i = 0; i < 5; i++) {
+        if (strcmp(students[i].reg_no, search_reg_no) == 0) {
+            printf("Student: %s, Registration Number: %s\n", students[i].name, students[i].reg_no);
+            printf("Grades:\n");
+            for (int j = 0; j < 5; j++) {
+                printf("%s: %.2f\n", unitNames[j], students[i].grades[j]);
+            }
+        break;
+        }
+    }
+
+    return 0;
+}
